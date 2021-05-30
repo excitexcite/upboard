@@ -1,0 +1,88 @@
+:root {
+   --page-width: 1228px;
+   --page-padding: 40px;
+
+   --primary-font: system;
+
+   @include breakpoint($large-tablet) {
+      --page-padding: 32px;
+   }
+
+   @include breakpoint($tablet) {
+      --page-padding: 24px;
+   }
+
+   @include breakpoint($large-mobile) {
+      --page-padding: 16px;
+   }
+}
+
+html {
+   font-size: 16px;
+}
+
+body {
+   min-height: 100vh;
+
+   margin: 0;
+   padding: 0;
+
+   color: #000;
+   background: #fff;
+   font-family: var(--primary-font);
+
+   line-height: 1.6;
+}
+
+.page {
+   display: flex;
+   flex-direction: column;
+
+   &--block {
+      flex-shrink: 0;
+
+      &__content {
+         flex: 1;
+      }
+   }
+}
+
+.container {
+   max-width: var(--page-width);
+   padding: 0 var(--page-padding);
+   margin: 0 auto;
+
+   box-sizing: content-box;
+}
+
+::selection {
+   background-color: darken($primary-color, 10%);
+   color: #fff;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}
+
+.link {
+   text-decoration: underline;
+
+   &:hover,
+   &:focus {
+      text-decoration: none;
+   }
+
+   &__primary {
+      color: $primary-color;
+   }
+}
+
+.svg-icon {
+   display: inline-block;
+   width: 1em;
+   height: 1em;
+   stroke-width: 0;
+   stroke: currentColor;
+   fill: currentColor;
+}

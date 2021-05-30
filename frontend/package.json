@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "sideEffects": [
-        "./src/**/*.styles.js"
+        "./src/**/assets.js"
     ],
     "scripts": {
         "start": "webpack --watch --env.NODE_ENV=development",

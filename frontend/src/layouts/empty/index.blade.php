@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-   <link rel="shortcut icon" href="{{ asset('img/logo/logo-48.png') }}">
+   <link rel="shortcut icon" href="~@/img/logo/logo-48.png">
 
    <title>@yield('title', config('app.name'))</title>
 

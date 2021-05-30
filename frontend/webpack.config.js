@@ -54,7 +54,7 @@ const minifyOptions = {
 const htmlReplacements = [
    ['@blank', 'target="_blank" rel="noopener noreferrer"'],
    ['xmlns="http://www.w3.org/2000/svg"', ''],
-   ['xlink:href="@icons/', `/img/sprite.svg?${Math.floor(Date.now() / 1000)}#`],
+   ['xlink:href="@icons/', `xlink:href="/dist/sprite.svg?${Math.floor(Date.now() / 1000)}#`],
 ].map(([search, replace]) => ({ search, replace, flags: 'g' }));
 
 let devServer = null;
@@ -224,9 +224,9 @@ module.exports = ((env = {}) => {
             loader: `svg-sprite-loader`,
             options: {
                extract: true,
-               symbolId: (filePath) => `${path.basename(filePath)}`,
+               symbolId: (p) => path.parse(p).name,
             },
-            include: path.resolve(__dirname, 'src/img/icons'),
+            include: path.resolve(__dirname, 'src/img/svg'),
          }, {
             test: /\.(png|jpe?g|webp|svg|git|ico)$/i,
             loader: `url-loader?name=[path][name].[ext]&esModule=false&limit=2000`,
@@ -260,7 +260,7 @@ module.exports = ((env = {}) => {
 
          ...(!env.noNotify ? [
             new WebpackNotifierPlugin({
-               title: 'HUM-DASHBOARD',
+               title: 'UpBoard',
                contentImage: PATHS.logo,
                excludeWarnings: isDev,
             }),
@@ -289,10 +289,10 @@ module.exports = ((env = {}) => {
          ...(compact ? [
             new FriendlyErrorsWebpackPlugin({
                compilationSuccessInfo: {
-                  messages: [chalk.blue('dashboard')],
+                  messages: [chalk.blue('UpBoard')],
                   notes: [
                      chalk`To create a production build run {blue npm run build}`,
-                     (isServe) ? chalk`Project is running at {blue http://localhost:${SERVE_PORT}}` : '',
+                     (isServe) ? chalk`Project is running on {blue http://localhost:${SERVE_PORT}}\n` : '',
                   ].filter(n => n),
                },
             }),
