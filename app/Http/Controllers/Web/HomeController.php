@@ -3,17 +3,26 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Controllers\Controller;
+
+use App\Models\Project;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            return view('home.dashboard');
-        } else {
-            return view('home.landing');
-        }
+        return (Auth::check()) ? $this->dashboard() : $this->landing();
+    }
+
+    private function dashboard()
+    {
+        return view('pages.home.dashboard', [
+            "projects" => Project::all(),
+        ]);
+    }
+
+    private function landing()
+    {
+        return view('pages.home.landing');
     }
 }

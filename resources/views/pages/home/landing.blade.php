@@ -1,0 +1,1 @@
+@extends('layouts.empty') @section('styles')@endsection @section('scripts')<script defer=defer src=/dist/scripts/pages/home/landing.271c9a678acab4ba16c1.js></script>@endsection @section('content') Welocom to UpBoard! @endsection 

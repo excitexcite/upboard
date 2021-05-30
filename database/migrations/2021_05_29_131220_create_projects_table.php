@@ -19,10 +19,10 @@ class CreateProjectsTable extends Migration
 
             $table->string('name');
             $table->string('slug');
-            $table->string('contract_number');
-            $table->string('contract_type');
-            $table->timestamp('started');
-            $table->timestamp('finished');
+            $table->string('contract_number')->nullable();
+            $table->string('contract_type')->nullable();
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
         });
     }
 
