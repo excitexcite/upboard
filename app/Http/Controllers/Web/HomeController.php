@@ -9,20 +9,20 @@ use App\Models\Project;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        return (Auth::check()) ? $this->dashboard() : $this->landing();
-    }
+   public function index()
+   {
+      return (Auth::check()) ? $this->dashboard() : $this->landing();
+   }
 
-    private function dashboard()
-    {
-        return view('pages.home.dashboard', [
-            "projects" => Project::all(),
-        ]);
-    }
+   private function dashboard()
+   {
+      return view('pages.home.dashboard', [
+         "projects" => Project::all(),
+      ]);
+   }
 
-    private function landing()
-    {
-        return view('pages.home.landing');
-    }
+   private function landing()
+   {
+      return view('pages.home.landing');
+   }
 }

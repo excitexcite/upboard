@@ -1,2 +1,7 @@
+import './assets';
 
-console.log('Hello, Dashboard');
+import initEmptyLayout from '@/layouts/empty';
+
+initEmptyLayout();
+
+console.log('Hello, Landing');

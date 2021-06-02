@@ -1,0 +1,57 @@
+.p-hero {
+   height: 94vh;
+   max-height: 926px;
+   min-height: 860px;
+
+   background-color: #040d21;
+   color: #fff;
+
+   background-image: url('~@/img/hero-blur.svg');
+   background-position: 50% 50%;
+}
+
+.p-hero--content {
+   margin: 30vh auto 0 auto;
+   max-width: 800px;
+}
+
+.p-hero--title {
+   margin: 0 0 16px 0;
+   font-size: 72px;
+   line-height: 1.05;
+   font-family: var(--secondary-font);
+
+   @include breakpoint($large-tablet) {
+      font-size: 50px;
+   }
+}
+
+.p-hero--description {
+   margin: 0;
+   font-size: 26px;
+   color: #8193b2;
+}
+
+.p-hero--sign-up {
+   @include empty-btn;
+
+   margin-top: 16px;
+
+   font-size: 18px;
+   color: #fff;
+   background-color: $primary-color;
+   display: inline-flex;
+
+   padding: 8px 24px;
+   font-weight: 600;
+   border-radius: 8px;
+   font-family: var(--secondary-font);
+
+   transition: background-color .25s;
+
+   &:hover,
+   &:focus{
+      background-color: $secondary-color;
+   }
+}
+

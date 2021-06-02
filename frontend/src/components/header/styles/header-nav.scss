@@ -1,0 +1,16 @@
+.header-nav {
+
+}
+
+.header-nav--list {
+   @include a11y-list;
+   display: flex;
+}
+
+.header-nav--item {
+   margin-left: 8px;
+
+   &:first-child {
+      margin-left: 0;
+   }
+}

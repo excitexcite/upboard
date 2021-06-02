@@ -19,10 +19,13 @@ class CreateProjectsTable extends Migration
 
             $table->string('name');
             $table->string('slug');
-            $table->string('contract_number')->nullable();
+            $table->string('contract')->nullable();
             $table->string('contract_type')->nullable();
-            $table->timestamp('start_time')->nullable();
-            $table->timestamp('end_time')->nullable();
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('end_at')->nullable();
+
+            $table->foreignId('user_id')->constrained();
+            $table->unique(['id', 'slug']);
         });
     }
 

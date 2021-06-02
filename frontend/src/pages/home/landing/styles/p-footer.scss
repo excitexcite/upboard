@@ -1,0 +1,30 @@
+.p-footer {
+   margin-top: 5em;
+   padding: 16px;
+   font-size: 14px;;
+   background-color: #eaebec;
+   color: #586069;
+}
+
+.p-footer-content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.p-footer--list {
+   @include a11y-list;
+   display: flex;
+}
+
+.p-footer--item {
+   margin-left: 12px;
+
+   &:first-child {
+      margin-left: 0;
+   }
+}
+
+.p-footer--copy {
+   margin: 0;
+}

@@ -12,7 +12,7 @@
                   <h1 class="projects-list--title h5 mb-0">Your projects</h1>
                   <button class="projects-list--new" aria-label="Add Project" title="Add Project">
                      <svg class="svg-icon">
-                        <use xlink:href="/dist/sprite.svg?1622343967#add-box"></use>
+                        <use xlink:href="/dist/sprite.svg?1622351961#add-box"></use>
                      </svg>
                   </button>
                </div>
