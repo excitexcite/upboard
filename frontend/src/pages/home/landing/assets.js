@@ -1,4 +1,4 @@
-import '@/layouts/app/assets';
+import '@/layouts/empty/assets';
 
 import '@/components/header/assets';
 

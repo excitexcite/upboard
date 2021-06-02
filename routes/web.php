@@ -16,9 +16,7 @@ use App\Http\Controllers\Web;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register', [Web\AuthController::class, 'register'])->name('register');
+Route::get('/login', [Web\AuthController::class, 'login'])->name('login');
 
-Auth::routes();
 Route::get('/', [Web\HomeController::class, 'index'])->name('home');

@@ -14,14 +14,12 @@
    @yield('styles')
 </head>
 
-<body>
-   @yield('header', View::make('components.header'))
+<body class="page">
+   @yield('header', View::make('components.header', ['class' => 'page--block']))
 
    <div class="page--block page--block__content">
       @yield('content')
    </div>
-
-   @yield('footer', View::make('components.footer'))
 </body>
 
 </html>

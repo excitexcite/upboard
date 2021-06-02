@@ -1,12 +1,9 @@
 {
-   "cSpell.words": [
-      "spatie",
-      "upboard"
-   ],
+   "cSpell.words": ["spatie", "upboard"],
    "files.exclude": {
       ".vscode": true,
       "**/node_modules": true,
-      "public/dist": true,
-      "resources/views": true,
+      // "public/dist": true,
+      // "resources/views": true
    }
 }

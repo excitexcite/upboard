@@ -1,5 +1,5 @@
-<header class="header {{ $class }}">
-   <div class="header--container container">
+<header class="header {{ $class ?? '' }}">
+   <div class="header--container">
       <a class="header--logo" href="/">
          <img class="header--logo-img svg-icon" src="~@/img/logo/logo.svg">
          UpBoard

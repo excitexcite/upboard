@@ -1,6 +1,8 @@
 const pages = [
    page('pages/home/landing'),
    page('pages/home/dashboard'),
+   page('pages/auth/register'),
+   page('pages/auth/login'),
 ];
 
 const components = [
