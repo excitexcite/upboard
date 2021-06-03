@@ -1,0 +1,29 @@
+.p--title {
+   margin: 32px 0 24px 0;
+}
+
+.p--projects {
+   @include a11y-list;
+   @include flex-grid('.p--project-card', 3, 32px);
+
+   display: flex;
+   flex-wrap: wrap;
+
+   @include breakpoint($tablet) {
+      @include flex-grid('.p--project-card', 2, 16px);
+   };
+
+   @include breakpoint($hor-mobile) {
+      @include flex-grid('.p--project-card', 1, 16px);
+   }
+}
+
+.p--project-card {
+   $columns: 3;
+   overflow: hidden;
+
+   height: 180px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

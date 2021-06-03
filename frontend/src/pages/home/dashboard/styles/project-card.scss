@@ -1,0 +1,26 @@
+.project-card {
+   background-color: rgba(#000, 0.1);
+   border-radius: 4px;
+
+   font-size: 24px;
+
+   transition: background-color .25s;
+
+   .svg-icon {
+      font-size: 64px;
+   }
+
+   &:hover {
+      background-color: rgba(#000, 0.2);
+   }
+}
+
+.project-card--link {
+   overflow: hidden;
+   height: 100%;
+   flex: 1;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 16px;
+}

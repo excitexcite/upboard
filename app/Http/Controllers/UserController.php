@@ -22,6 +22,9 @@ class UserController extends Controller
          'email' => $req->input('email'),
          'password' => $req->input('password'),
       ]);
+      if (!$token) {
+         abort(403, "Incorrect credentials");
+      }
       $user = Auth::user();
       $user->token = $token;
       return $user;

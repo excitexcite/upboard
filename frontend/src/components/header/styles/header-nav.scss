@@ -33,6 +33,7 @@
 }
 
 .header-nav--link {
+   @include empty-btn;
    display: flex;
    padding: 4px;
 }

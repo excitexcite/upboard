@@ -1,5 +1,6 @@
 import Micromodal from 'micromodal';
 import { COMMON_MICROMODAL } from '../common/constants';
+import { AppError } from '../errors/errors';
 
 export const escapeHtml = (function () {
    const map = {
@@ -79,3 +80,10 @@ export function getTemplateData(key) {
    }
    return false;
 }
+
+export function processDefErr(e) {
+   if (!(e instanceof AppError)) throw e;
+   alert(e.message);
+   e.log();
+}
+

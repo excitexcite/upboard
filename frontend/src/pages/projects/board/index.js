@@ -3,7 +3,7 @@ import './assets';
 import initAppLayout from '@/layouts/app';
 import { addTask, fetchTasks, updateTask } from '@/scripts/api/projects';
 import BoardList from './components/BoardList/BoardList';
-import { AppError } from '@/scripts/errors/errors';
+import { processDefErr } from '@/scripts/utils/base';
 import Task from './components/Task/Task';
 import { getTemplateData } from '@/scripts/utils/base';
 import { throttle } from 'throttle-debounce';
@@ -163,10 +163,4 @@ function renderLists() {
    lists.resolved.render();
    lists.feedback.render();
    lists.closed.render();
-}
-
-function processDefErr(e) {
-   if (!(e instanceof AppError)) throw e;
-   alert(e.message);
-   e.log();
 }

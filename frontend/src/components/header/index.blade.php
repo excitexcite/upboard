@@ -8,6 +8,13 @@
          <ul class="header-nav--list">
             @if (Auth::check())
                <li class="header-nav--item header-nav--item__bg">
+                  <button class="header-nav--link logout-js" title="Log out">
+                     <svg class="svg-icon">
+                        <use xlink:href="@icons/exit"></use>
+                     </svg>
+                  </button>
+               </li>
+               <li class="header-nav--item header-nav--item__bg">
                   <a class="header-nav--link" href="{{ route('new-project') }}" title="New Project">
                      <svg class="svg-icon">
                         <use xlink:href="@icons/add"></use>

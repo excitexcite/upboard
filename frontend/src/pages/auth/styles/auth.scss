@@ -1,0 +1,36 @@
+body {
+   background-color: #f9fafc;
+}
+
+.auth {
+   width: 400px;
+   margin-top: 36px;
+   margin-bottom: 36px;
+}
+
+.auth--logo {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 36px;
+   font-weight: 700;
+
+   .svg-icon {
+      margin-right: 8px;
+   }
+}
+
+.auth--already {
+   padding-top: 8px;
+   color: #0052cc;
+   text-decoration: none;
+   font-size: 14px;
+   font-family: var(--secondary-font);
+   text-align: center;
+   display: block;
+
+   &:hover,
+   &:focus {
+      text-decoration: underline;
+   }
+}

@@ -1,3 +1,13 @@
+/**
+ * @typedef {{
+ *    id: number,
+ *    first_name: string,
+ *    last_name: string,
+ *    username: string,
+ *    email: string,
+ *    token?:string,
+ * }} User
+ */
 
 /**
  * @typedef {{
@@ -11,7 +21,6 @@
  *    user: User,
  * }} ProjectData
  */
-
 
 /**
  * @typedef {{

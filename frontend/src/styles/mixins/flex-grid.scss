@@ -1,0 +1,24 @@
+@mixin flex-grid($itemSelector, $columns, $x-gap, $v-gap: null) {
+   @if not $v-gap {
+      $v-gap: $x-gap;
+   }
+
+   display: flex;
+   flex-wrap: wrap;
+
+   margin-top: -$v-gap;
+   margin-left: -$x-gap;
+
+   #{$itemSelector} {
+      @if $columns==1 {
+         width: 100%;
+      }
+
+      @else {
+         width: calc((100% - #{$x-gap * $columns}) / #{$columns});
+      }
+
+      margin-top: $v-gap;
+      margin-left: $x-gap;
+   }
+}
