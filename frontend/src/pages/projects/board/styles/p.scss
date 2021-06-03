@@ -1,0 +1,51 @@
+body {
+   background: linear-gradient(
+      to right,
+      #136a8a,
+      #267871
+   );
+}
+
+.p {
+   --board-padding: 16px;
+
+   display: flex;
+   flex-direction: column;
+   flex-shrink: 0;
+}
+
+.p--controls {
+   padding: var(--board-padding);
+}
+
+.p--content {
+   flex: 1;
+   display: flex;
+   overflow: auto;
+}
+
+.p--lists {
+   @include a11y-list;
+   display: flex;
+   align-items: flex-start;
+   flex: 1;
+   padding: 0 var(--board-padding);
+   margin-bottom: var(--board-padding);
+}
+
+.p--list {
+   flex: 1;
+   min-width: 250px;
+   max-width: 400px;
+
+   margin-left: var(--board-padding);
+
+   &:first-child {
+      margin-left: 0;
+   }
+
+   @include breakpoint($hor-mobile) {
+      width: calc(100vw - var(--board-padding) * 3);
+      max-width: initial;
+   }
+}

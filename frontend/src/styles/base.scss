@@ -2,7 +2,7 @@
    --page-width: 1228px;
    --page-padding: 40px;
 
-   --primary-font: system;
+   --primary-font: 'Open Sans', sans-serif;
    --secondary-font: arial;
 
    @include breakpoint($large-tablet) {

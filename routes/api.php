@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,5 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+   return $request->user();
 });
+
+Route::get('/users', [Controllers\UserController::class, 'all']);
+Route::post('/users', [Controllers\UserController::class, 'create']);
+Route::post('/users/login', [Controllers\UserController::class, 'login']);
+Route::post('/users/register', [Controllers\UserController::class, 'register']);
+
+Route::post('/projects', [Controllers\ProjectController::class, 'create']);

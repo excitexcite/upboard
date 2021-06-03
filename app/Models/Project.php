@@ -22,12 +22,16 @@ class Project extends Model
 
    protected $fillable = [
       'name',
-      'slug',
       'contract',
       'contract_type',
       'start_at',
       'end_at'
    ];
+
+   public function user() {
+      return $this->belongsTo
+      (User::class);
+   }
 
    public function getSlugOptions(): SlugOptions
    {

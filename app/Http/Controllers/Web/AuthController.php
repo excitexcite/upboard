@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
-use App\Models\Project;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {

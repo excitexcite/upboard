@@ -17,7 +17,7 @@ class HomeController extends Controller
    private function dashboard()
    {
       return view('pages.home.dashboard', [
-         "projects" => Project::all(),
+         "projects" => Auth::user()->projects()->get(),
       ]);
    }
 

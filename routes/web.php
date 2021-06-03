@@ -16,7 +16,11 @@ use App\Http\Controllers\Web;
 |
 */
 
-Route::get('/register', [Web\AuthController::class, 'register'])->name('register');
-Route::get('/login', [Web\AuthController::class, 'login'])->name('login');
-
 Route::get('/', [Web\HomeController::class, 'index'])->name('home');
+
+Route::get('/register', [Web\AuthController::class, 'register'])->name('register')->middleware('guest');
+Route::get('/login', [Web\AuthController::class, 'login'])->name('login')->middleware('guest');
+
+Route::get('/{username}/{project}', [Web\ProjectController::class, 'board']);
+
+Route::get('/projects/new', [Web\ProjectController::class, 'create']);

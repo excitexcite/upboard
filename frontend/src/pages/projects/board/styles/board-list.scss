@@ -1,0 +1,43 @@
+.board-list {
+   --list-padding: 8px;
+
+   padding: var(--list-padding);
+   border-radius: 2px;
+   background: #ebecf0;
+}
+
+.board-list--title {
+   margin: 0;
+   line-height: 1;
+   font-size: 16px;
+   font-family: var(--secondary-font);
+   margin-bottom: 8px;
+}
+
+.board-list--add {
+   @include empty-btn;
+
+   display: flex;
+   padding: 8px;
+   width: 100%;
+   border-radius: 2px;
+   line-height: 1;
+
+   font-family: var(--secondary-font);
+   color: #5e6c84;
+
+   transition: color .3s, background-color .3s;
+
+   &:hover {
+      background-color: rgba(9, 30, 66, 0.08);
+      color: #172b4d;
+   }
+}
+
+.board-list--list {
+   @include a11y-list;
+}
+
+.board-list--add-icon {
+   margin-right: 4px;
+}

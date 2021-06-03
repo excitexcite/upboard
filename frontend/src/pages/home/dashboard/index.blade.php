@@ -10,11 +10,11 @@
             <div class="projects-list card">
                <div class="projects-list--header card-header">
                   <h1 class="projects-list--title h5 mb-0">Your projects</h1>
-                  <button class="projects-list--new" aria-label="Add Project" title="Add Project">
+                  <a class="projects-list--new" title="Add Project" href="/projects/new">
                      <svg class="svg-icon">
                         <use xlink:href="@icons/add-box"></use>
                      </svg>
-                  </button>
+                  </a>
                </div>
 
                <img src="~@/img/logo/logo.svg" alt="">
@@ -23,7 +23,9 @@
                   @if ($projects->isNotEmpty())
                      <ul>
                         @foreach ($projects as $project)
-                           <li>{{ $project->name }}</li>
+                           <li>
+                              <a href="/{{ Auth::user()->username }}/{{ $project->slug }}">{{ $project->name }}</a>
+                           </li>
                         @endforeach
                      </ul>
                   @else

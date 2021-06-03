@@ -11,7 +11,7 @@
 }
 
 .p-hero--content {
-   margin: 30vh auto 0 auto;
+   margin: #{'min(30vh, 250px)'} auto 0 auto;
    max-width: 800px;
 }
 

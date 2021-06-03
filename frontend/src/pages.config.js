@@ -3,6 +3,8 @@ const pages = [
    page('pages/home/dashboard'),
    page('pages/auth/register'),
    page('pages/auth/login'),
+   page('pages/projects/create'),
+   page('pages/projects/board'),
 ];
 
 const components = [
