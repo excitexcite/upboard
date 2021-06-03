@@ -6,3 +6,4 @@ import './styles/p.scss';
 
 // Icons
 import '@/img/svg/add.svg';
+import '@/img/svg/settings.svg';

@@ -1,11 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.app', ['headerClass' => 'header__transparent'])
 
 @section('styles')<%= $.htmlWebpackPlugin.tags.headTags %>@endsection
 @section('scripts')<%= $.htmlWebpackPlugin.tags.bodyTags %>@endsection
 
 @section('content')
    <div class="p--controls">
-      <div>Hi, Project: {{ $project->name }}</div>
+      <div class="p--control">{{ $project->name }}</div>
+      <div class="p--control" title="Role">QA</div>
+      <button class="p--control" title="Project settings">
+         <svg class="svg-icon">
+            <use xlink:href="@icons/settings"></use>
+         </svg>
+      </button>
    </div>
    <main class="p--content">
       <ul class="p--lists">

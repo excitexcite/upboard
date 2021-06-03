@@ -1,5 +1,12 @@
 .header {
-   padding: 16px 28px;
+   padding: 8px 16px;
+
+   background-color: #026aa7;
+   color: rgba(#fff, .9);
+
+   &__transparent {
+      background-color: transparent;
+   }
 }
 
 .header--container {
@@ -11,6 +18,11 @@
 .header--logo {
    display: flex;
    align-items: center;
+   font-weight: 700;
+
+   .svg-icon {
+      filter: drop-shadow(-2px -1px 0px rgba(#fff, .4));
+   }
 }
 
 .header--logo-img {

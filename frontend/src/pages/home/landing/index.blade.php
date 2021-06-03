@@ -7,14 +7,14 @@
    <main class="p">
       <section class="p-hero">
          <div class="p-hero--nav-container">
-            @include('components.header', ['class' => 'p-hero--nav'])
+            @include('components.header', ['class' => 'p-hero--nav header__transparent'])
          </div>
          <div class="p-hero--container container">
             <div class="p-hero--content">
                <h1 class="p-hero--title">Welcome to UpBoard!</h1>
                <p class="p-hero--description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia
                   explicabo deserunt ipsum fugit aliquid?</p>
-               <button class="p-hero--sign-up">Sign Up for UpBoard</button>
+               <a class="p-hero--sign-up" href="{{ route('register') }}">Sign Up for UpBoard</a>
             </div>
          </div>
       </section>

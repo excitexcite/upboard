@@ -15,7 +15,25 @@ body {
 }
 
 .p--controls {
+   display: flex;
    padding: var(--board-padding);
+}
+
+.p--control {
+   @include empty-btn;
+   background: rgba(#fff, 0.24);
+   color: #fff;
+   display: inline-flex;
+   align-items: center;
+   border-radius: 2px;
+   padding: 4px 8px;
+   font-size: 14px;
+   margin-left: 4px;
+   font-weight: 700;
+
+   &:first-child {
+      margin-left: 0;
+   }
 }
 
 .p--content {

@@ -20,7 +20,7 @@
 </head>
 
 <body class="page">
-   @yield('header', View::make('components.header', ['class' => 'page--block']))
+   @yield('header', View::make('components.header', ['class' => 'page--block '.($headerClass ?? '')]))
 
    <div class="page--block page--block__content p">
       @yield('content')
