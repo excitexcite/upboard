@@ -3,7 +3,11 @@
 
    padding: var(--list-padding);
    border-radius: 2px;
-   background: #ebecf0;
+   background-color: #ebecf0;
+
+   &__target {
+      background-color: darken(#ebecf0, 10%);
+   }
 }
 
 .board-list--title {

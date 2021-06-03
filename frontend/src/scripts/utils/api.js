@@ -28,7 +28,7 @@ export async function makeApiRequest(path, method, {
          throw await HttpError.fromApiResponse(resp);
       }
 
-      return (await resp.json()).data;
+      return (await resp.json());
 
    } catch (e) {
       if (isNetworkError(e)) {

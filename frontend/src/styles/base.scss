@@ -33,6 +33,10 @@ body {
    font-family: var(--primary-font);
 
    line-height: 1.6;
+
+   &.no-select * {
+      user-select: none!important;
+   }
 }
 
 .page {
@@ -57,7 +61,7 @@ body {
 }
 
 ::selection {
-   background-color: darken($primary-color, 10%);
+   background-color: rgba(darken($primary-color, 10%), 0.9);
    color: #fff;
 }
 

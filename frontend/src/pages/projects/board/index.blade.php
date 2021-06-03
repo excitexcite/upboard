@@ -11,41 +11,7 @@
       <ul class="p--lists">
          <li class="p--list board-list" data-list="new">
             <h2 class="board-list--title">New</h2>
-            <ul class="board-list--list">
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet</p>
-               </li>
-            </ul>
+            <ul class="board-list--list"></ul>
             <button class="board-list--add">
                <svg class="board-list--add-icon svg-icon">
                   <use xlink:href="@icons/add"></use>
@@ -53,7 +19,7 @@
                Add another task
             </button>
          </li>
-         <li class="p--list board-list" data-list="in-progres">
+         <li class="p--list board-list" data-list="in_progress">
             <h2 class="board-list--title">In Progress</h2>
             <ul class="board-list--list"></ul>
             <button class="board-list--add">
@@ -65,11 +31,7 @@
          </li>
          <li class="p--list board-list" data-list="resolved">
             <h2 class="board-list--title">Resolved</h2>
-            <ul class="board-list--list">
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-            </ul>
+            <ul class="board-list--list"></ul>
             <button class="board-list--add">
                <svg class="board-list--add-icon svg-icon">
                   <use xlink:href="@icons/add"></use>
@@ -79,11 +41,7 @@
          </li>
          <li class="p--list board-list" data-list="feedback">
             <h2 class="board-list--title">Feedback</h2>
-            <ul class="board-list--list">
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum</p>
-               </li>
-            </ul>
+            <ul class="board-list--list"></ul>
             <button class="board-list--add">
                <svg class="board-list--add-icon svg-icon">
                   <use xlink:href="@icons/add"></use>
@@ -93,23 +51,7 @@
          </li>
          <li class="p--list board-list" data-list="closed">
             <h2 class="board-list--title">Closed</h2>
-            <ul class="board-list--list">
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-
-               <li class="task board-list--task">
-                  <p class="task--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, eligendi!</p>
-               </li>
-            </ul>
+            <ul class="board-list--list"></ul>
             <button class="board-list--add">
                <svg class="board-list--add-icon svg-icon">
                   <use xlink:href="@icons/add"></use>
@@ -119,4 +61,12 @@
          </li>
       </ul>
    </main>
+@endsection
+
+@section('body-additional')
+   <div class="p--drag-container drag-container-js"></div>
+@endsection
+
+@section('template-data')
+   <script type="application/json" template-data="project">@json($project)</script>
 @endsection

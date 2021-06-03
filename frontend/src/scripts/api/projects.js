@@ -1,8 +1,22 @@
 import { makeApiRequest } from '../utils/api';
 
-/**
- * @param {Project} data
- */
+/** @param {ProjectData} data */
 export function createProject(data) {
    return makeApiRequest('/projects', 'POST', { data });
+}
+
+/**
+ * @param {string} projectId,
+ * @returns {Promise<TaskData[]>}
+ */
+export function fetchTasks(projectId, data) {
+   return makeApiRequest(`/projects/${projectId}/tasks`, 'GET');
+}
+
+/**
+ * @param {string} projectId,
+ * @param {TaskData} data,
+ */
+ export function addTask(projectId, data) {
+   return makeApiRequest(`/projects/${projectId}/tasks`, 'POST', { data });
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\ProjectRequest;
+use App\Http\Requests\Auth\TaskRequest;
 use App\Models\Project;
+use App\Models\Task;
 use App\Services\ProjectService;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,5 +21,26 @@ class ProjectController extends Controller
       $project->end_at = $req->input('end_at');
 
       return $projectService->create($project, Auth::user());
+   }
+
+   public function all() {
+      return Project::all();
+   }
+
+   public function allTasks(Project $project) {
+      return $project->tasks()->get();
+   }
+
+   public function addTask(TaskRequest $req, ProjectService $projectService, Project $project)
+   {
+      $task = new Task();
+      $task->name = $req->input('name');
+      $task->type = $req->input('type');
+      $task->status = $req->input('status');
+      $task->estimate = $req->input('estimate');
+      $task->start_at = $req->input('start_at');
+      $task->end_at = $req->input('end_at');
+
+      return $projectService->addTask($project, $task);
    }
 }

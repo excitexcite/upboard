@@ -26,3 +26,6 @@ Route::post('/users/login', [Controllers\UserController::class, 'login']);
 Route::post('/users/register', [Controllers\UserController::class, 'register']);
 
 Route::post('/projects', [Controllers\ProjectController::class, 'create']);
+Route::get('/projects', [Controllers\ProjectController::class, 'all']);
+Route::get('/projects/{project}/tasks', [Controllers\ProjectController::class, 'allTasks']);
+Route::post('/projects/{project}/tasks', [Controllers\ProjectController::class, 'addTask']);

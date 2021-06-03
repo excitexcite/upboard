@@ -14,11 +14,11 @@ class ProjectUser extends Migration
    public function up()
    {
       Schema::create('project_user', function (Blueprint $table) {
-         $table->id();
          $table->timestamps();
 
          $table->enum('role', ['developer', 'qa', 'pm', 'ceo']);
 
+         $table->primary(['project_id', 'user_id']);
          $table->foreignId('project_id')->constrained();
          $table->foreignId('user_id')->constrained();
       });

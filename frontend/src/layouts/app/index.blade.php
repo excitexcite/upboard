@@ -25,6 +25,9 @@
    <div class="page--block page--block__content p">
       @yield('content')
    </div>
+
+   @yield('body-additional')
+   @yield('template-data')
 </body>
 
 </html>
