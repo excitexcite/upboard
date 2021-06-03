@@ -1,3 +1,4 @@
+import Events from '@/scripts/lib/Events';
 import Task from '../Task/Task';
 
 export default class BoardList {
@@ -23,6 +24,24 @@ export default class BoardList {
       });
    }
 
+   /**
+    * @param {string} id
+    * @returns {Task}
+    */
+   deleteById(id) {
+      const index = this._tasks.findIndex(t => `${t.data.id}` === `${id}`);
+      if (index === -1) return undefined;
+      return this._tasks.splice(index, 1)?.[0];
+   }
+
+   /**
+   * @param {string} id
+   * @returns {Task}
+   */
+   getById(id) {
+      return this._tasks.find(t => `${t.data.id}` === `${id}`);
+   }
+
    _init() {
       this._getElements();
    }
@@ -33,7 +52,12 @@ export default class BoardList {
     * @returns {bool}
     */
    _sortFunc(a, b) {
-      return new Date(a.data.start_at) - new Date(b.data.start_at);
+      const d = new Date(a.data.start_at) - new Date(b.data.start_at);
+      if (d !== 0) {
+         return d;
+      }
+
+      return a.data.id - b.data.id;
    }
 
    _getElements() {

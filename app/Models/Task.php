@@ -10,8 +10,8 @@ use Carbon\Carbon;
  * @property string $name
  * @property string $type
  * @property string $status
- * @property Carbon $start_time
- * @property Carbon $end_time
+ * @property Carbon $start_at
+ * @property Carbon $end_at
  * @property Carbon $estimate
  */
 class Task extends Model
@@ -20,11 +20,17 @@ class Task extends Model
 
    protected $fillable = [
       'name',
-      'start_time',
-      'end_time',
+      'start_at',
+      'end_at',
       'estimate',
       'type',
       'status',
+   ];
+
+   protected $dates = [
+      'start_at',
+      'end_at',
+      'estimate'
    ];
 
    public function project()

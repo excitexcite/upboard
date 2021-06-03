@@ -28,6 +28,8 @@ export class HttpError extends AppError {
 
    /** @param {Response} response */
    static async fromApiResponse(response) {
-      return new HttpError((await response.json()).errors[0].message, response);
+      const err = await response.json();
+      const first = err.errors ? Object.values(err.errors)[0][0] : '';
+      return new HttpError(`${err.message} ${first}`, response);
    }
 }

@@ -7,11 +7,36 @@
    background-color: #fff;
    cursor: pointer;
 
-   transition: color .3s, background-color .3s;
+   transition: color 0.3s, background-color 0.3s;
 
    &:hover {
       background-color: #f4f5f7;
       border-bottom-color: rgba(9, 30, 66, 0.25);
+   }
+
+   &__dragged {
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      transform: translate(var(--x, 0), var(--y, 0)) rotate(5deg);
+      transform-origin: center;
+      width: var(--w, 0);
+      height: var(--h, 0);
+
+      margin: 0;
+      list-style: none;
+      box-shadow: 1px 1px 5px rgba(9, 30, 66, 0.25);
+
+      &:before {
+         content: '';
+         position: absolute;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         cursor: pointer;
+      }
    }
 }
 

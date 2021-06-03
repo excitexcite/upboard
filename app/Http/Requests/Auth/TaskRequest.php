@@ -30,7 +30,7 @@ class TaskRequest extends FormRequest
          'status' => ['required', 'string', 'max:255', Rule::in(['new', 'in_progress', 'resolved', 'feedback', 'closed'])],
          'start_at' => ['date'],
          'end_at' => ['date', 'after:start_at'],
-         'estimate' => ['date', 'after:start_at'],
+         'estimate' => ['required', 'date', 'after:start_at'],
       ];
    }
 }

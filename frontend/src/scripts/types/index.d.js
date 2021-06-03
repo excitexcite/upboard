@@ -21,6 +21,7 @@
  *    status: TaskStatus,
  *    start_at: string,
  *    end_at: string,
+ *    estimate: string,
  *    user: User,
  * }} TaskData
  */

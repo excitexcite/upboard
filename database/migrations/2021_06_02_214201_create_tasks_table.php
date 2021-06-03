@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
          $table->string('name');
          $table->timestamp('start_at');
          $table->timestamp('end_at')->nullable();
-         $table->timestamp('estimate');
+         $table->timestamp('estimate')->nullable();
          $table->enum('type', ['feature', 'bug']);
          $table->enum('status', ['new', 'in_progress', 'resolved', 'feedback', 'closed']);
 

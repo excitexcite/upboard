@@ -20,3 +20,8 @@ export function fetchTasks(projectId, data) {
  export function addTask(projectId, data) {
    return makeApiRequest(`/projects/${projectId}/tasks`, 'POST', { data });
 }
+
+/** @param {TaskData} data */
+ export function updateTask(data) {
+   return makeApiRequest(`/tasks/${data.id}`, 'PATCH', { data });
+}

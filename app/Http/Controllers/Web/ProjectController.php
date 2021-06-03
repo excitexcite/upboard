@@ -14,7 +14,7 @@ class ProjectController extends Controller
       // validate access
       $project = Project::where('slug', $project)->first(); // TODO: search by slug and user
       if (!$project) {
-         return abort(404, "Project doesn't exist");
+         abort(404, "Project doesn't exist");
       }
       return view('pages.projects.board', [
          'project' => $project,

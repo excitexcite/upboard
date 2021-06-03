@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\ProjectRequest;
+use App\Http\Requests\Auth\TaskUpdateRequest;
 use App\Http\Requests\Auth\TaskRequest;
 use App\Models\Project;
 use App\Models\Task;
@@ -27,7 +28,7 @@ class ProjectController extends Controller
       return Project::all();
    }
 
-   public function allTasks(Project $project) {
+   public function projectTasks(Project $project) {
       return $project->tasks()->get();
    }
 
@@ -42,5 +43,16 @@ class ProjectController extends Controller
       $task->end_at = $req->input('end_at');
 
       return $projectService->addTask($project, $task);
+   }
+
+   public function updateTask(TaskUpdateRequest $req, ProjectService $projectService, Task $task) {
+      $newTask = new Task();
+      $newTask->id = $req->input('id');
+      $newTask->name = $req->input('name');
+      $newTask->type = $req->input('type');
+      $newTask->status = $req->input('status');
+      $newTask->estimate = $req->input('estimate');
+
+      return $projectService->updateTask($task, $newTask);
    }
 }

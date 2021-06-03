@@ -5,6 +5,8 @@
    border-radius: 2px;
    background-color: #ebecf0;
 
+   transition: background-color .1s;
+
    &__target {
       background-color: darken(#ebecf0, 10%);
    }

@@ -1,24 +1,24 @@
 import './assets';
 
 import initAppLayout from '@/layouts/app';
-import { fetchTasks } from '@/scripts/api/projects';
+import { addTask, fetchTasks, updateTask } from '@/scripts/api/projects';
 import BoardList from './components/BoardList/BoardList';
 import { AppError } from '@/scripts/errors/errors';
 import Task from './components/Task/Task';
 import { getTemplateData } from '@/scripts/utils/base';
+import { throttle } from 'throttle-debounce';
 
 initAppLayout();
 
 const $page = document.body.querySelector('.p');
-const $dragContainer = document.body.querySelector('.drag-container-js');
 
 /** @type {{[status: string]: BoardList}} */
 const lists = {
-   new: new BoardList($page.querySelector('.board-list[data-list="new"]')),
-   in_progress: new BoardList($page.querySelector('.board-list[data-list="in_progress"]')),
-   resolved: new BoardList($page.querySelector('.board-list[data-list="resolved"]')),
-   feedback: new BoardList($page.querySelector('.board-list[data-list="feedback"]')),
-   closed: new BoardList($page.querySelector('.board-list[data-list="closed"]')),
+   new: new BoardList($page.querySelector('.board-list[data-status="new"]')),
+   in_progress: new BoardList($page.querySelector('.board-list[data-status="in_progress"]')),
+   resolved: new BoardList($page.querySelector('.board-list[data-status="resolved"]')),
+   feedback: new BoardList($page.querySelector('.board-list[data-status="feedback"]')),
+   closed: new BoardList($page.querySelector('.board-list[data-status="closed"]')),
 };
 
 /** @type {ProjectData} */
@@ -33,6 +33,29 @@ function init() {
 
 function initEvents() {
    initDragDropEvents();
+
+   $page.addEventListener('click', throttle(500, ({ target }) => {
+      const $btn = target.closest('.add-task-js');
+      if (!$btn) return;
+
+      const $list = $btn.closest('.board-list');
+      _addTask($list.dataset.status);
+   }));
+}
+
+async function _addTask(status) {
+   try {
+      const taskData = await addTask(project.id, {
+         status,
+         name: `${Date.now()}`,
+         type: 'bug',
+         start_at: new Date().toISOString(),
+         estimate: new Date(2022, 0).toISOString(),
+      });
+      lists[status].addTask(new Task(taskData));
+   } catch (e) {
+      processDefErr(e);
+   }
 }
 
 function initDragDropEvents() {
@@ -43,29 +66,61 @@ function initDragDropEvents() {
    let shiftY = 0;
 
    /** @type {HTMLElement} */
-   let $boardList = null;
+   let $srcList = null;
+
+   /** @type {HTMLElement} */
+   let $dstList = null;
 
    document.body.addEventListener('mousedown', (e) => {
       $task = e.target.closest('.task');
       if (!$task) return;
 
+      $srcList = $task.closest('.board-list');
+
       const pos = $task.getBoundingClientRect();
       shiftX = e.clientX - pos.left;
       shiftY = e.clientY - pos.top;
 
-      $dragContainer.style.setProperty('--w', `${$task.offsetWidth}px`);
-      $dragContainer.style.setProperty('--y', `${$task.offsetHeight}px`);
+      $task.style.setProperty('--w', `${$task.offsetWidth}px`);
+      $task.style.setProperty('--h', `${$task.offsetHeight}px`);
 
-      $dragContainer.innerHTML = '';
-      $dragContainer.appendChild($task);
+      document.body.appendChild($task);
+      $task.classList.add('task__dragged');
       document.body.classList.add('no-select');
       drag = true;
       move(e);
    });
 
-   document.body.addEventListener('mouseup', () => {
+   document.body.addEventListener('mouseup', async () => {
+      if (!drag) return;
       drag = false;
+
       document.body.classList.remove('no-select');
+      $dstList?.classList.remove('board-list__target');
+
+      $task.classList.remove('task__dragged');
+
+      if (!$dstList || $dstList === $srcList) {
+         renderLists();
+         return;
+      }
+
+      const srcStatus = $srcList.dataset.status;
+      const dstStatus = $dstList.dataset.status;
+      const taskId = $task.dataset.id;
+
+      const task = lists[srcStatus].getById(taskId);
+      task.data.status = dstStatus;
+
+      lists[srcStatus].deleteById(taskId);
+      lists[dstStatus].addTask(task);
+      renderLists();
+
+      try {
+         await updateTask(task.data);
+      } catch (e) {
+         processDefErr(e);
+      }
    });
 
    document.body.addEventListener('mousemove', (e) => {
@@ -74,21 +129,22 @@ function initDragDropEvents() {
    });
 
    function move(e) {
-      $dragContainer.style.setProperty('--x', `${e.pageX - shiftX}px`);
-      $dragContainer.style.setProperty('--y', `${e.pageY - shiftY}px`);
+      $task.style.setProperty('--x', `${e.pageX - shiftX}px`);
+      $task.style.setProperty('--y', `${e.pageY - shiftY}px`);
 
-      $dragContainer.hidden = true;
+      $task.hidden = true;
       const $below = document.elementFromPoint(e.clientX, e.clientY);
-      $dragContainer.hidden = false;
+      $task.hidden = false;
 
-      $boardList?.classList.remove('board-list__target');
-      $boardList = $below?.closest('.board-list');
-      $boardList?.classList.add('board-list__target');
+      $dstList?.classList.remove('board-list__target');
+      $dstList = $below?.closest('.board-list');
+      $dstList?.classList.add('board-list__target');
    }
 }
+
 async function loadTasks() {
    try {
-      const tasks = await fetchTasks(project.id); // TODO: real project id
+      const tasks = await fetchTasks(project.id);
       tasks.forEach((task) => {
          if (!lists[task.status]) {
             console.error(`Unexpected task status: '${task.status}'`);
@@ -97,9 +153,7 @@ async function loadTasks() {
       });
       renderLists();
    } catch (e) {
-      if (!(e instanceof AppError)) throw e;
-      alert(e.message);
-      e.log();
+      processDefErr(e);
    }
 }
 
@@ -109,4 +163,10 @@ function renderLists() {
    lists.resolved.render();
    lists.feedback.render();
    lists.closed.render();
+}
+
+function processDefErr(e) {
+   if (!(e instanceof AppError)) throw e;
+   alert(e.message);
+   e.log();
 }
