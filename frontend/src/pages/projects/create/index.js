@@ -3,6 +3,7 @@ import './assets';
 import initAppLayout from '@/layouts/app';
 import { processDefErr } from '@/scripts/utils/base';
 import { createProject } from '@/scripts/api/projects';
+import globals from '@/scripts/common/globals';
 
 initAppLayout();
 
@@ -16,8 +17,8 @@ $form.addEventListener('submit', (e) => {
 async function submit() {
    try {
       const { slug } = await createProject(getData());
-      const username = 'lorem';
-      location.href = `/users/${username}/slug`;
+      const username = globals.user.username;
+      location.href = `/users/${username}/${slug}`;
    } catch (e) {
       processDefErr(e);
    }

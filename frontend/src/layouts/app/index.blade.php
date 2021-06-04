@@ -28,6 +28,8 @@
 
    @yield('body-additional')
    @yield('template-data')
+
+   <script type="application/json" template-data="auth-user">@json(Auth::user())</script>
 </body>
 
 </html>
