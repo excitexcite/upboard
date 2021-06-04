@@ -21,6 +21,7 @@
                <label class="auth-form--label form-label" for="log-password">Password</label>
                <input class="auth-form--inp form-control form-control--inp" name="password" type="password" required
                   autocomplete="current-password" id="log-password">
+               <a class="auth-form--forgot forgot-js" href="#">Forgot password?</a>
             </li>
             <li class="auth-form--field">
                <button class="auth-form--go">Log in</button>

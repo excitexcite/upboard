@@ -43,11 +43,33 @@ class Project extends Model
       return $this->hasMany(Task::class);
    }
 
+   public function getUserRole($user): string
+   {
+      if ($this->user()->is($user)) {
+         return "admin";
+      }
+
+      return "guest";
+   }
 
    public function getSlugOptions(): SlugOptions
    {
       return SlugOptions::create()
          ->generateSlugsFrom('name')
          ->saveSlugsTo('slug');
+   }
+
+   static private $rolesMap = [
+      'admin' => 'Admin',
+      'guest' => 'Guest',
+      'developer' => 'Dev',
+      'qa' => 'QA',
+      'pm' => 'PM',
+      'ceo' => 'CEO',
+   ];
+
+   static public function readableRole(string $role): string
+   {
+      return Project::$rolesMap[$role];
    }
 }

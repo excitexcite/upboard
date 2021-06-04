@@ -18,10 +18,15 @@ const layouts = [
    template('layouts/empty'),
 ];
 
+const mails = [
+   template('mails/forgot'),
+];
+
 const allPages = [
-   ...pages,
    ...components,
    ...layouts,
+   ...pages,
+   ...mails,
 ];
 
 function page(path) {

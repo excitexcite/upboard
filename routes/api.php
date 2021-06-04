@@ -25,6 +25,7 @@ Route::post('/users', [Controllers\UserController::class, 'create']);
 Route::patch('/users/{user}', [Controllers\UserController::class, 'update']);
 Route::post('/users/login', [Controllers\UserController::class, 'login']);
 Route::post('/users/register', [Controllers\UserController::class, 'register']);
+Route::post('/users/send-forgot', [Controllers\UserController::class, 'sendForgot']);
 
 Route::post('/projects', [Controllers\ProjectController::class, 'create']);
 Route::get('/projects', [Controllers\ProjectController::class, 'all']);

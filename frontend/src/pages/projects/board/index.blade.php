@@ -6,7 +6,7 @@
 @section('content')
    <div class="p--controls">
       <div class="p--control">{{ $project->name }}</div>
-      <div class="p--control" title="Role">QA</div>
+      <div class="p--control" title="Role">{{ $role }}</div>
       <button class="p--control" title="Project settings">
          <svg class="svg-icon">
             <use xlink:href="@icons/settings"></use>

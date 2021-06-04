@@ -23,3 +23,8 @@ export function login(data) {
 export function updateUser(data) {
    return makeApiRequest(`/users/${data.id}`, 'PATCH', { data });
 }
+
+/** @param {{email: string}} data */
+ export function sendForgotEmail(data) {
+   return makeApiRequest(`/users/send-forgot`, 'POST', { data });
+}

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web;
+use App\Mail\ForgotMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,4 @@ Route::get('/login', [Web\AuthController::class, 'login'])->middleware('guest')-
 Route::get('/projects/new', [Web\ProjectController::class, 'create'])->name('new-project');
 Route::get('/users/{username}', [Web\UserController::class, 'account'])->name('account');
 Route::get('/users/{username}/{project}', [Web\ProjectController::class, 'board'])->name('board');
+

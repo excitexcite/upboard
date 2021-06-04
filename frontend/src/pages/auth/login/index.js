@@ -1,7 +1,7 @@
 import './assets';
 
 import initEmptyLayout from '@/layouts/empty';
-import { login } from '@/scripts/api/user';
+import { login, sendForgotEmail } from '@/scripts/api/user';
 import { processDefErr } from '@/scripts/utils/base';
 import { setCookie } from '@/scripts/lib/cookie';
 import { DURATIONS } from '@/scripts/common/constants';
@@ -9,11 +9,21 @@ import { DURATIONS } from '@/scripts/common/constants';
 initEmptyLayout();
 
 const $form = document.querySelector('.auth-form-js');
+const $forgot = document.querySelector('.forgot-js');
 
-$form.addEventListener('submit', (e) => {
-   e.preventDefault();
-   submit();
-});
+initEvents();
+
+function initEvents() {
+   $form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submit();
+   });
+
+   $forgot.addEventListener('click', (e) => {
+      e.preventDefault();
+      forgot();
+   });
+}
 
 async function submit() {
    try {
@@ -33,4 +43,17 @@ async function _login() {
    setCookie('token', token, DURATIONS.year);
 }
 
+async function forgot() {
+   const email = prompt('Enter your email address');
+   if (!email) {
+      return;
+   }
+
+   try {
+      await sendForgotEmail({ email });
+      alert('New password has been sent to your email address');
+   } catch (e) {
+      processDefErr(e);
+   }
+}
 

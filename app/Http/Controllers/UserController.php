@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ForgotRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\UpdateUserRequest;
+use App\Mail\ForgotMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -64,5 +68,18 @@ class UserController extends Controller
       }
       $user->save();
       return $user;
+   }
+
+   protected function sendForgot(ForgotRequest $req) {
+      $user = User::whereEmail($req->input('email'))->first();
+      if (!$user) {
+         abort(404, "No users with specified email address");
+      }
+
+      $newPassword = Str::random(12);
+      $user->password = Hash::make($newPassword);
+      $user->save();
+
+      Mail::to($user->email)->send(new ForgotMail($user, $newPassword));
    }
 }
