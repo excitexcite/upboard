@@ -51,8 +51,8 @@ class Project extends Model
 
    public function getUserRole($user): string
    {
-      if (!$user) {
-         return 'guest';
+      if ($this->user()->is($user)) {
+         return "admin";
       }
 
       $pivots = DB::select('select role from project_user where project_id = :project_id and user_id = :user_id limit 1', [

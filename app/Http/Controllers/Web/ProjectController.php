@@ -25,11 +25,14 @@ class ProjectController extends Controller
          abort(404, "Project doesn't exist");
       }
 
+      $role = $project->getUserRole(Auth::user());
+
       return view('pages.projects.board', [
          'project' => $project,
          'owner' => $user,
          'isOwner' => $user->is(Auth::user()),
-         'role' => Project::readableRole($project->getUserRole(Auth::user())),
+         'role' => $role,
+         'roleReadable' => Project::readableRole($role),
       ]);
    }
 

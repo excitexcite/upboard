@@ -4,3 +4,7 @@ export function logout() {
    deleteCookie('token');
    location.href = '/';
 }
+
+export function isRootRole(role) {
+   return role === 'admit' || role === 'pm' || role === 'ceo';
+}

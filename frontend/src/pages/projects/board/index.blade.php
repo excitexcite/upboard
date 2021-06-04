@@ -6,7 +6,7 @@
 @section('content')
    <div class="p--controls">
       <div class="p--control">{{ $project->name }}</div>
-      <div class="p--control" title="Role">{{ $role }}</div>
+      <div class="p--control" title="Role">{{ $roleReadable }}</div>
       <button class="p--control invite-js" title="Invite to project">
          <svg class="svg-icon">
             <use xlink:href="@icons/team"></use>
@@ -186,6 +186,10 @@
 @section('template-data')
    <script type="application/json" template-data="project">
       @json($project)
+
+   </script>
+   <script type="application/json" template-data="role">
+      @json($role)
 
    </script>
 @endsection

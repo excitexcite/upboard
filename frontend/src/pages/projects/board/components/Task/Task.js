@@ -1,8 +1,10 @@
 import { updateTask } from '@/scripts/api/projects';
 import microTemplate from '@/scripts/lib/microTmpl';
-import { hideModal, htmlToElem, processDefErr, showModal } from '@/scripts/utils/base';
+import { getTemplateData, hideModal, processDefErr, showModal } from '@/scripts/utils/base';
 
 import tmpl from './task.html';
+
+const role = getTemplateData('role');
 
 export default class Task {
    /** @param {TaskData} taskData */
@@ -57,6 +59,11 @@ export default class Task {
    }
 
    async _edit() {
+      if (role !== 'admin' && role !== 'pm' && role !== 'ceo') {
+         alert('Not enough permissions to edit tasks');
+         return;
+      }
+
       const estimate = this.$editModalForm.estimate.value;
       this.data.name = this.$editModalForm.name.value;
       this.data.status = this.$editModalForm.status.value;

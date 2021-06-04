@@ -26,6 +26,10 @@ const lists = {
 
 /** @type {ProjectData} */
 const project = getTemplateData('project');
+const role = getTemplateData('role');
+
+const devStatuses = ['new', 'in_progress', 'resolved', 'feedback'];
+const qaStatuses = ['resolved', 'feedback', 'closed'];
 
 init();
 
@@ -69,6 +73,11 @@ function initEvents() {
 }
 
 async function showAddTaskModal(status) {
+   if (role !== 'admin' && role !== 'pm' && role !== 'ceo') {
+      alert('Not enough permissions to create a task');
+      return;
+   }
+
    $addTaskForm.reset();
    $addTaskForm.status.value = status;
    console.log(status);
@@ -108,6 +117,7 @@ function initDragDropEvents() {
 
       $srcList = $task.closest('.board-list');
 
+
       const pos = $task.getBoundingClientRect();
       shiftX = e.clientX - pos.left;
       shiftY = e.clientY - pos.top;
@@ -132,6 +142,15 @@ function initDragDropEvents() {
       const srcStatus = $srcList.dataset.status;
       const dstStatus = $dstList.dataset.status;
       const taskId = $task.dataset.id;
+
+      const devCheck = role === 'developer' && (!devStatuses.includes(srcStatus) || !devStatuses.includes(dstStatus));
+      const qaCheck = role === 'qa' && (!qaStatuses.includes(srcStatus) || !qaStatuses.includes(dstStatus));
+
+      if (devCheck || qaCheck ) {
+         renderLists();
+         alert('You cannot move tasks in this way');
+         return;
+      }
 
       const task = lists[srcStatus].getById(taskId);
       task.data.status = dstStatus;
