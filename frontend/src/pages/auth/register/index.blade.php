@@ -9,7 +9,7 @@
          <img src="~@/img/logo/logo.svg" class="svg-icon">
          UpBoard
       </div>
-      <form class="auth--form auth-form" action="">
+      <form class="auth--form auth-form auth-form-js" action="">
          <h1 class="auth-form--title">Sign up for your account</h1>
          <ul class="auth-form--fields">
             <li class="auth-form--field">
@@ -19,7 +19,7 @@
             </li>
             <li class="auth-form--field">
                <label class="auth-form--label form-label" for="reg-username">Your username</label>
-               <input class="auth-form--inp form-control form-control--inp" name="username" autocomplete="username"
+               <input class="auth-form--inp form-control form-control--inp" name="username"
                   id="reg-username" required>
             </li>
             <li class="auth-form--field">

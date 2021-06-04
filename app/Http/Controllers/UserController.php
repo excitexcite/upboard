@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,5 +48,21 @@ class UserController extends Controller
          'email' => $req->email,
          'password' => Hash::make($req->password),
       ]);
+   }
+
+   protected function update(UpdateUserRequest $req, User $user)
+   {
+      if (!$user->is(Auth::user())) {
+         abort(403, "You don't have permissions to change this user");
+      }
+
+      if ($req->input('first_name') !== null) {
+         $user->first_name = $req->input('first_name');
+      }
+      if ($req->input('last_name') !== null) {
+         $user->last_name = $req->input('last_name');
+      }
+      $user->save();
+      return $user;
    }
 }

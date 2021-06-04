@@ -15,11 +15,11 @@
             </li>
             <li class="form--field">
                <label class="form--label form-label" for="p-contract">Contract Number</label>
-               <input class="form--inp form-control form-control--inp" name="contract" id="p-contract" required>
+               <input class="form--inp form-control form-control--inp" name="contract" id="p-contract">
             </li>
             <li class="form--field">
                <label class="form--label form-label" for="p-contract-type">Contract Type</label>
-               <input class="form--inp form-control form-control--inp" name="contract_type" id="p-contract-type" required>
+               <input class="form--inp form-control form-control--inp" name="contract_type" id="p-contract-type">
             </li>
             <li class="form--field">
                <label class="form--label form-label" for="p-start-at">Start Date</label>

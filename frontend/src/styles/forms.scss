@@ -8,10 +8,6 @@
 
 .form--fields {
    @include a11y-list;
-
-   padding-bottom: 25px;
-   margin-bottom: 8px;
-   border-bottom: 1px solid #ccc;
 }
 
 .form--field {

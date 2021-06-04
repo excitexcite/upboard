@@ -1,0 +1,13 @@
+.p {
+   --page-width: 800px;
+}
+
+.p--logout {
+   display: flex;
+   align-items: center;
+   margin-top: 32px;
+
+   .svg-icon {
+      margin-left: 4px;
+   }
+}

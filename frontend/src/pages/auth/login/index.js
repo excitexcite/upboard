@@ -1,12 +1,12 @@
 import './assets';
 
-import initAppLayout from '@/layouts/app';
+import initEmptyLayout from '@/layouts/empty';
 import { login } from '@/scripts/api/user';
 import { processDefErr } from '@/scripts/utils/base';
 import { setCookie } from '@/scripts/lib/cookie';
 import { DURATIONS } from '@/scripts/common/constants';
 
-initAppLayout();
+initEmptyLayout();
 
 const $form = document.querySelector('.auth-form-js');
 
@@ -32,3 +32,5 @@ async function _login() {
 
    setCookie('token', token, DURATIONS.year);
 }
+
+

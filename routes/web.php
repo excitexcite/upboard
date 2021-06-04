@@ -20,6 +20,7 @@ Route::get('/', [Web\HomeController::class, 'index'])->name('home');
 Route::get('/register', [Web\AuthController::class, 'register'])->middleware('guest')->name('register');
 Route::get('/login', [Web\AuthController::class, 'login'])->middleware('guest')->name('login');
 
-Route::get('/projects/new', [Web\ProjectController::class, 'create'])->name('new-project');
-Route::get('/{username}/{project}', [Web\ProjectController::class, 'board']);
 
+Route::get('/projects/new', [Web\ProjectController::class, 'create'])->name('new-project');
+Route::get('/users/{username}', [Web\UserController::class, 'account'])->name('account');
+Route::get('/users/{username}/{project}', [Web\ProjectController::class, 'board'])->name('board');

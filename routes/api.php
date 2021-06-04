@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/users', [Controllers\UserController::class, 'all']);
 Route::post('/users', [Controllers\UserController::class, 'create']);
+Route::patch('/users/{user}', [Controllers\UserController::class, 'update']);
 Route::post('/users/login', [Controllers\UserController::class, 'login']);
 Route::post('/users/register', [Controllers\UserController::class, 'register']);
 

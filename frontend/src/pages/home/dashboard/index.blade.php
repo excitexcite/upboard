@@ -9,12 +9,12 @@
       <ul class="p--projects">
          @foreach ($projects as $project)
             <li class="project-card p--project-card">
-               <a class="project-card--link"
-                  href="/{{ Auth::user()->username }}/{{ $project->slug }}">{{ $project->name }}</a>
+               <a class="project-card--link" href="{{ route('board', ['username' => Auth::user()->username, 'project' => $project->slug]) }}">
+                  {{ $project->name }}</a>
             </li>
          @endforeach
          <li class="project-card project-card--new p--project-card">
-            <a class="project-card--link" href="/projects/new">
+            <a class="project-card--link" href="/projects/new" title="New Project">
                <svg class="svg-icon">
                   <use xlink:href="@icons/add"></use>
                </svg>

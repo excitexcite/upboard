@@ -5,6 +5,7 @@ const pages = [
    page('pages/auth/login'),
    page('pages/projects/create'),
    page('pages/projects/board'),
+   page('pages/users/account'),
 ];
 
 const components = [

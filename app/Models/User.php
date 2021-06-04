@@ -47,7 +47,11 @@ class User extends Authenticatable implements JWTSubject
    }
 
    public function fullName(): string {
-      return "$this->first_name $this->last_name";
+      if ($this->first_name && $this->last_name) {
+         return "$this->first_name $this->last_name";
+      }
+
+      return $this->username;
    }
 
    public function getJWTIdentifier()
