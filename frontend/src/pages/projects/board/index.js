@@ -1,7 +1,7 @@
 import './assets';
 
 import initAppLayout from '@/layouts/app';
-import { addTask, fetchTasks, updateTask } from '@/scripts/api/projects';
+import { addTask, fetchTasks, updateTask, invite } from '@/scripts/api/projects';
 import BoardList from './components/BoardList/BoardList';
 import { hideModal, processDefErr, showModal } from '@/scripts/utils/base';
 import Task from './components/Task/Task';
@@ -12,6 +12,8 @@ initAppLayout();
 
 const $page = document.body.querySelector('.p');
 const $addTaskForm = $page.querySelector('.add-task-form-js');
+const $invite = $page.querySelector('.invite-js');
+const $settings = $page.querySelector('.settings-js');
 
 /** @type {{[status: string]: BoardList}} */
 const lists = {
@@ -55,6 +57,14 @@ function initEvents() {
       } finally {
          $addTaskForm.ok.disabled = false;
       }
+   });
+
+   $settings.addEventListener('click', () => {
+      alert('Coming soon!');
+   });
+
+   $invite.addEventListener('click', () => {
+      _invite();
    });
 }
 
@@ -167,6 +177,24 @@ function initDragDropEvents() {
       $dstList?.classList.remove('board-list__target');
       $dstList = $below?.closest('.board-list');
       $dstList?.classList.add('board-list__target');
+   }
+}
+
+async function _invite() {
+   const email = prompt('Email address');
+   if (!email) {
+      return;
+   }
+
+   const role = prompt('Role (developer, qa, pm, ceo)');
+   if (!email) {
+      return;
+   }
+
+   try {
+      await invite(project.id, { email, role });
+   } catch (e) {
+      processDefErr(e);
    }
 }
 

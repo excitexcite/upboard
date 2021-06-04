@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -38,6 +39,11 @@ class Project extends Model
       return $this->belongsTo(User::class);
    }
 
+   public function users()
+   {
+      return $this->belongsToMany(User::class)->withPivot('role')->withTimestamps();
+   }
+
    public function tasks()
    {
       return $this->hasMany(Task::class);
@@ -45,8 +51,16 @@ class Project extends Model
 
    public function getUserRole($user): string
    {
-      if ($this->user()->is($user)) {
-         return "admin";
+      if (!$user) {
+         return 'guest';
+      }
+
+      $pivots = DB::select('select role from project_user where project_id = :project_id and user_id = :user_id limit 1', [
+         'project_id' => $this->id,
+         'user_id' => $user->id,
+      ]);
+      if (!empty((array)$pivots)) {
+         return $pivots[0]->role;
       }
 
       return "guest";

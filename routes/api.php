@@ -31,5 +31,6 @@ Route::post('/projects', [Controllers\ProjectController::class, 'create']);
 Route::get('/projects', [Controllers\ProjectController::class, 'all']);
 Route::get('/projects/{project}/tasks', [Controllers\ProjectController::class, 'projectTasks']);
 Route::post('/projects/{project}/tasks', [Controllers\ProjectController::class, 'addTask']);
+Route::post('/projects/{project}/invite', [Controllers\ProjectController::class, 'invite']);
 
 Route::patch('/tasks/{task}', [Controllers\ProjectController::class, 'updateTask']);

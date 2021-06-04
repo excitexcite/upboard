@@ -12,7 +12,7 @@ export function login(data) {
  * @param {{ email: string, username: string, password: string }} data
  * @returns {User}
  */
- export function register(data) {
+export function register(data) {
    return makeApiRequest('/users/register', 'POST', { data });
 }
 
@@ -25,6 +25,6 @@ export function updateUser(data) {
 }
 
 /** @param {{email: string}} data */
- export function sendForgotEmail(data) {
+export function sendForgotEmail(data) {
    return makeApiRequest(`/users/send-forgot`, 'POST', { data });
 }

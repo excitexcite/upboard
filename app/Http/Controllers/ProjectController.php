@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\ForgotRequest;
+use App\Http\Requests\Auth\InviteRequest;
 use App\Http\Requests\Auth\ProjectRequest;
 use App\Http\Requests\Auth\TaskUpdateRequest;
 use App\Http\Requests\Auth\TaskRequest;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use App\Services\ProjectService;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,5 +57,14 @@ class ProjectController extends Controller
       $newTask->estimate = $req->input('estimate');
 
       return $projectService->updateTask($task, $newTask);
+   }
+
+   public function invite (InviteRequest $req, Project $project) {
+      $user = User::whereEmail($req->input('email'))->first();
+      if (!$user) {
+         abort(404, "No users with specified email address");
+      }
+
+      $project->users()->attach($user->id, ['role' => $req->input('role')]);
    }
 }

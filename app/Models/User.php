@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,11 +41,23 @@ class User extends Authenticatable implements JWTSubject
       'remember_token',
    ];
 
-   public function projects() {
+   public function allProjects()
+   {
+      return $this->projects()->get()->merge($this->invitedToProjects()->get());
+   }
+
+   public function projects()
+   {
       return $this->hasMany(Project::class);
    }
 
-   public function fullName(): string {
+   public function invitedToProjects()
+   {
+      return $this->belongsToMany(Project::class)->withPivot('role')->withTimestamps();
+   }
+
+   public function fullName(): string
+   {
       if ($this->first_name && $this->last_name) {
          return "$this->first_name $this->last_name";
       }
@@ -61,8 +72,6 @@ class User extends Authenticatable implements JWTSubject
 
    public function getJWTCustomClaims()
    {
-      return [
-
-      ];
+      return [];
    }
 }

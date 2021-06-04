@@ -12,3 +12,4 @@ import './styles/p.scss';
 import '@/img/svg/add.svg';
 import '@/img/svg/close.svg';
 import '@/img/svg/settings.svg';
+import '@/img/svg/team.svg';

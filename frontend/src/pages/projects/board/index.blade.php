@@ -7,7 +7,12 @@
    <div class="p--controls">
       <div class="p--control">{{ $project->name }}</div>
       <div class="p--control" title="Role">{{ $role }}</div>
-      <button class="p--control" title="Project settings">
+      <button class="p--control invite-js" title="Invite to project">
+         <svg class="svg-icon">
+            <use xlink:href="@icons/team"></use>
+         </svg>
+      </button>
+      <button class="p--control settings-js" title="Project settings">
          <svg class="svg-icon">
             <use xlink:href="@icons/settings"></use>
          </svg>

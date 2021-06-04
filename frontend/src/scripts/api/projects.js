@@ -25,3 +25,11 @@ export function fetchTasks(projectId, data) {
  export function updateTask(data) {
    return makeApiRequest(`/tasks/${data.id}`, 'PATCH', { data });
 }
+
+/**
+ * @param {string} projectId
+ * @param {{email: string}} data
+ */
+export function invite(projectId, data) {
+   return makeApiRequest(`/projects/${projectId}/invite`, 'POST', { data });
+}
