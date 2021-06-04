@@ -14,17 +14,17 @@
          <ul class="auth-form--fields">
             <li class="auth-form--field">
                <label class="auth-form--label form-label" for="reg-email">Your email</label>
-               <input class="auth-form--inp form-control form-control--inp" type="email" name="email"
+               <input class="auth-form--inp form-control" type="email" name="email"
                   autocomplete="username" id="reg-email" required>
             </li>
             <li class="auth-form--field">
                <label class="auth-form--label form-label" for="reg-username">Your username</label>
-               <input class="auth-form--inp form-control form-control--inp" name="username"
+               <input class="auth-form--inp form-control" name="username"
                   id="reg-username" required>
             </li>
             <li class="auth-form--field">
                <label class="auth-form--label form-label" for="reg-password">Password</label>
-               <input class="auth-form--inp form-control form-control--inp" name="password" autocomplete="new-password"
+               <input class="auth-form--inp form-control" name="password" autocomplete="new-password"
                   type="password" required id="reg-password">
             </li>
             <li class="auth-form--field">

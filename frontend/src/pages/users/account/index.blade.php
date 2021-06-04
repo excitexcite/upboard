@@ -15,23 +15,23 @@
          <ul class="form--fields">
             <li class="form--field">
                <label class="form--label form-label" for="p-fn">First Name</label>
-               <input class="form--inp form-control form-control--inp" name="first_name" id="p-fn"
+               <input class="form--inp form-control" name="first_name" id="p-fn"
                   value="{{ $user->first_name }}">
             </li>
             <li class="form--field">
                <label class="form--label form-label" for="p-ln">Last Name</label>
-               <input class="form--inp form-control form-control--inp" name="last_name" id="p-ln"
+               <input class="form--inp form-control" name="last_name" id="p-ln"
                   value="{{ $user->last_name }}">
             </li>
             @if ($private)
                <li class="form--field">
                   <label class="form--label form-label" for="p-email">Email</label>
-                  <input class="form--inp form-control form-control--inp" name="email" id="p-email" type="email" readonly
+                  <input class="form--inp form-control" name="email" id="p-email" type="email" readonly
                      value="{{ $user->email }}">
                </li>
                <li class="form--field">
                   <label class="form--label form-label" for="p-username">Username</label>
-                  <input class="form--inp form-control form-control--inp" name="username" id="p-username" readonly
+                  <input class="form--inp form-control" name="username" id="p-username" readonly
                      value="{{ $user->username }}">
                </li>
                <li class="form--field">

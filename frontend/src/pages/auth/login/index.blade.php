@@ -14,12 +14,12 @@
          <ul class="auth-form--fields">
             <li class="auth-form--field">
                <label class="auth-form--label form-label" for="log-email">Your email</label>
-               <input class="auth-form--inp form-control form-control--inp" name="email" type="email"
+               <input class="auth-form--inp form-control" name="email" type="email"
                   autocomplete="username" required id="log-email">
             </li>
             <li class="auth-form--field">
                <label class="auth-form--label form-label" for="log-password">Password</label>
-               <input class="auth-form--inp form-control form-control--inp" name="password" type="password" required
+               <input class="auth-form--inp form-control" name="password" type="password" required
                   autocomplete="current-password" id="log-password">
                <a class="auth-form--forgot forgot-js" href="#">Forgot password?</a>
             </li>

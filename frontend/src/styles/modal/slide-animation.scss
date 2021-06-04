@@ -1,0 +1,68 @@
+.modal__slide {
+   display: none;
+}
+
+.modal__slide.is-open {
+   display: block;
+}
+
+.modal__slide[aria-hidden="false"] .modal--overlay {
+   animation: modal-fade-in .2s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.modal__slide[aria-hidden="false"] .modal--container {
+   animation: modal-slide-in .2s cubic-bezier(0, 0, .2, 1);
+}
+
+.modal__slide[aria-hidden="true"] .modal--overlay {
+   animation: modal-fade-out .2s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.modal__slide[aria-hidden="true"] .modal--container {
+   animation: modal-slide-out .2s cubic-bezier(0, 0, .2, 1);
+}
+
+.modal__slide .modal--container,
+.modal__slide .modal--overlay {
+   will-change: transform;
+}
+
+@keyframes modal-fade-in {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes modal-fade-out {
+   from {
+      opacity: 1;
+   }
+
+   to {
+      opacity: 0;
+   }
+}
+
+@keyframes modal-slide-in {
+   from {
+      transform: translateY(15%);
+   }
+
+   to {
+      transform: translateY(0);
+   }
+}
+
+@keyframes modal-slide-out {
+   from {
+      transform: translateY(0);
+   }
+
+   to {
+      transform: translateY(-10%);
+   }
+}

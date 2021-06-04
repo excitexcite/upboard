@@ -1,0 +1,60 @@
+.base-modal {
+   &--container {
+      position: relative;
+
+      width: 600px;
+      margin: 126px 0;
+      padding: 12px 32px 26px;
+
+      box-shadow: 0px 0px 40px rgba(89, 89, 89, 0.15);
+
+      @include breakpoint(650px) {
+         width: 95vw;
+      }
+   }
+
+   &--header {
+      padding: 8px 0;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $light-gray-color;
+   }
+
+   &--title {
+      font-size: 18px;
+      margin: 0;
+   }
+
+   &--close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+
+   &--text {
+      font-size: 16px;
+   }
+
+   &--controls {
+      margin-top: 24px;
+
+      &__full {
+         display: flex;
+
+         .base-modal--control-item {
+            flex: 1;
+         }
+      }
+   }
+
+   &--control-item {
+      margin-left: 8px;
+
+      &:first-child {
+         margin-left: 0;
+      }
+   }
+}

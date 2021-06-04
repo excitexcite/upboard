@@ -3,7 +3,7 @@ import './assets';
 import initAppLayout from '@/layouts/app';
 import { addTask, fetchTasks, updateTask } from '@/scripts/api/projects';
 import BoardList from './components/BoardList/BoardList';
-import { processDefErr } from '@/scripts/utils/base';
+import { hideModal, processDefErr, showModal } from '@/scripts/utils/base';
 import Task from './components/Task/Task';
 import { getTemplateData } from '@/scripts/utils/base';
 import { throttle } from 'throttle-debounce';
@@ -11,6 +11,7 @@ import { throttle } from 'throttle-debounce';
 initAppLayout();
 
 const $page = document.body.querySelector('.p');
+const $addTaskForm = $page.querySelector('.add-task-form-js');
 
 /** @type {{[status: string]: BoardList}} */
 const lists = {
@@ -39,23 +40,41 @@ function initEvents() {
       if (!$btn) return;
 
       const $list = $btn.closest('.board-list');
-      _addTask($list.dataset.status);
+      showAddTaskModal($list.dataset.status);
    }));
+
+   $addTaskForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      try {
+         $addTaskForm.ok.disabled = true;
+         await _addTask();
+         hideModal('create-task-modal');
+      } catch (e) {
+         processDefErr(e);
+      } finally {
+         $addTaskForm.ok.disabled = false;
+      }
+   });
 }
 
-async function _addTask(status) {
-   try {
-      const taskData = await addTask(project.id, {
-         status,
-         name: `${Date.now()}`,
-         type: 'bug',
-         start_at: new Date().toISOString(),
-         estimate: new Date(2022, 0).toISOString(),
-      });
-      lists[status].addTask(new Task(taskData));
-   } catch (e) {
-      processDefErr(e);
-   }
+async function showAddTaskModal(status) {
+   $addTaskForm.reset();
+   $addTaskForm.status.value = status;
+   console.log(status);
+   showModal('create-task-modal');
+}
+
+async function _addTask() {
+   const estimate = $addTaskForm.estimate.value;
+   const taskData = await addTask(project.id, {
+      status: $addTaskForm.status.value,
+      name: $addTaskForm.name.value.trim(),
+      type: $addTaskForm.type.value,
+      start_at: new Date().toISOString(),
+      estimate: estimate ? new Date(estimate).toISOString() : null,
+   });
+   lists[taskData.status].addTask(new Task(taskData));
 }
 
 function initDragDropEvents() {
@@ -64,6 +83,8 @@ function initDragDropEvents() {
    let drag = false;
    let shiftX = 0;
    let shiftY = 0;
+
+   let possibleDrag = false;
 
    /** @type {HTMLElement} */
    let $srcList = null;
@@ -80,18 +101,11 @@ function initDragDropEvents() {
       const pos = $task.getBoundingClientRect();
       shiftX = e.clientX - pos.left;
       shiftY = e.clientY - pos.top;
-
-      $task.style.setProperty('--w', `${$task.offsetWidth}px`);
-      $task.style.setProperty('--h', `${$task.offsetHeight}px`);
-
-      document.body.appendChild($task);
-      $task.classList.add('task__dragged');
-      document.body.classList.add('no-select');
-      drag = true;
-      move(e);
+      possibleDrag = true;
    });
 
    document.body.addEventListener('mouseup', async () => {
+      possibleDrag = false;
       if (!drag) return;
       drag = false;
 
@@ -124,6 +138,20 @@ function initDragDropEvents() {
    });
 
    document.body.addEventListener('mousemove', (e) => {
+      if (!drag && possibleDrag) {
+         $task.style.setProperty('--w', `${$task.offsetWidth}px`);
+         $task.style.setProperty('--h', `${$task.offsetHeight}px`);
+
+         document.body.appendChild($task);
+         $task.classList.add('task__dragged');
+         document.body.classList.add('no-select');
+         drag = true;
+         possibleDrag = false;
+
+         move(e);
+         return;
+      }
+
       if (!drag) return;
       move(e);
    });
